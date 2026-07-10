@@ -5,6 +5,7 @@ from openpyxl import Workbook
 from us_hair_launch.ai.base import GenerationRequest
 from us_hair_launch.ai.providers import (
     EXAONE_MODEL_NAME,
+    GEMINI_DEFAULT_MODEL,
     GEMMA_MODEL_NAME,
     GeminiProvider,
     LlamaServerProvider,
@@ -121,6 +122,49 @@ def test_gemini_provider_returns_diagnostics_when_google_api_rejects_request(
     assert response.used_remote is True
     assert response.diagnostics
     assert "Gemini unavailable: ClientError" in response.diagnostics[0]
+
+
+def test_gemini_provider_uses_current_default_model() -> None:
+    assert GEMINI_DEFAULT_MODEL == "gemini-3.5-flash"
+
+
+def test_gemini_provider_falls_back_when_model_is_not_found(monkeypatch) -> None:
+    from google import genai
+    from google.genai.errors import ClientError
+
+    calls: list[str] = []
+
+    class Response:
+        text = '{"summary":"ok"}'
+
+    class FallbackModels:
+        def generate_content(self, *, model: str, contents: str):
+            calls.append(model)
+            if model == "gemini-2.0-flash":
+                raise ClientError(
+                    404,
+                    {"error": {"message": "model is no longer available", "status": "NOT_FOUND"}},
+                )
+            return Response()
+
+    class FallbackClient:
+        models = FallbackModels()
+
+        def __init__(self, *, api_key: str) -> None:
+            assert api_key == "ok-key"
+
+    monkeypatch.setattr(genai, "Client", FallbackClient)
+
+    response = GeminiProvider(api_key="ok-key", model="gemini-2.0-flash").generate(
+        GenerationRequest(backend="gemini", mode="copy_diff_review", prompt="review this")
+    )
+
+    assert response.text == '{"summary":"ok"}'
+    assert calls == ["gemini-2.0-flash", "gemini-flash-latest"]
+    assert response.diagnostics == [
+        "Gemini model gemini-2.0-flash failed: ClientError.",
+        "Gemini model fallback used: gemini-flash-latest.",
+    ]
 
 
 def test_review_draft_falls_back_when_ai_provider_raises(

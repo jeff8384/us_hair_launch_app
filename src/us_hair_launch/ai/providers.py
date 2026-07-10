@@ -13,7 +13,8 @@ from .base import DeterministicFallbackProvider, GenerationRequest, GenerationRe
 
 GEMMA_MODEL_NAME = "gemma-4-12B-it-Q4_K_M.gguf"
 EXAONE_MODEL_NAME = "EXAONE-Deep-7.8B-Q8_0.gguf"
-GEMINI_DEFAULT_MODEL = "gemini-2.0-flash"
+GEMINI_DEFAULT_MODEL = "gemini-3.5-flash"
+GEMINI_FALLBACK_MODELS = ("gemini-flash-latest", "gemini-3.1-flash-lite")
 
 
 @dataclass
@@ -173,14 +174,34 @@ class GeminiProvider:
             from google import genai
 
             client = genai.Client(api_key=key)
-            response = client.models.generate_content(
-                model=self.model,
-                contents=request.prompt,
-            )
+            diagnostics: list[str] = []
+            response = None
+            for model in _gemini_model_candidates(self.model):
+                try:
+                    response = client.models.generate_content(
+                        model=model,
+                        contents=request.prompt,
+                    )
+                    if model != self.model:
+                        diagnostics.append(f"Gemini model fallback used: {model}.")
+                    break
+                except APIError as exc:
+                    diagnostics.append(f"Gemini model {model} failed: {type(exc).__name__}.")
+                    if not _is_missing_gemini_model(exc):
+                        raise
+            if response is None:
+                return GenerationResponse(
+                    backend=self.name,
+                    text="",
+                    used_remote=True,
+                    diagnostics=diagnostics
+                    + ["Gemini unavailable: no configured model could be used."],
+                )
             return GenerationResponse(
                 backend=self.name,
                 text=response.text or "",
                 used_remote=True,
+                diagnostics=diagnostics,
             )
         except ImportError as exc:
             return _gemini_unavailable(exc)
@@ -197,6 +218,16 @@ def _gemini_unavailable(exc: Exception) -> GenerationResponse:
         used_remote=True,
         diagnostics=[f"Gemini unavailable: {type(exc).__name__}: {exc}"],
     )
+
+
+def _gemini_model_candidates(primary: str) -> tuple[str, ...]:
+    ordered = (primary, *GEMINI_FALLBACK_MODELS)
+    return tuple(dict.fromkeys(model for model in ordered if model))
+
+
+def _is_missing_gemini_model(exc: APIError) -> bool:
+    status_code = getattr(exc, "code", None)
+    return status_code == 404 or "NOT_FOUND" in str(exc)
 
 
 def provider_for(
