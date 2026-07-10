@@ -1,0 +1,39 @@
+{
+  "properties": {
+    "mode": {
+      "enum": [
+        "marketing",
+        "compliance_safe"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "headline": {
+      "title": "Headline",
+      "type": "string"
+    },
+    "body": {
+      "title": "Body",
+      "type": "string"
+    },
+    "bullets": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Bullets",
+      "type": "array"
+    },
+    "cta": {
+      "default": "",
+      "title": "Cta",
+      "type": "string"
+    }
+  },
+  "required": [
+    "mode",
+    "headline",
+    "body"
+  ],
+  "title": "CopyVariant",
+  "type": "object"
+}

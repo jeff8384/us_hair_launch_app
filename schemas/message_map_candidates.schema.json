@@ -1,0 +1,103 @@
+{
+  "$defs": {
+    "MessageTerritory": {
+      "properties": {
+        "territory": {
+          "enum": [
+            "science-led",
+            "sensorial-premium",
+            "clean-performance"
+          ],
+          "title": "Territory",
+          "type": "string"
+        },
+        "core_promise": {
+          "title": "Core Promise",
+          "type": "string"
+        },
+        "differentiator": {
+          "title": "Differentiator",
+          "type": "string"
+        },
+        "proof_direction": {
+          "title": "Proof Direction",
+          "type": "string"
+        },
+        "emotional_payoff": {
+          "title": "Emotional Payoff",
+          "type": "string"
+        },
+        "headline_options": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2,
+          "title": "Headline Options",
+          "type": "array"
+        },
+        "subheadline_options": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2,
+          "title": "Subheadline Options",
+          "type": "array"
+        },
+        "benefit_bullets": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 3,
+          "title": "Benefit Bullets",
+          "type": "array"
+        },
+        "compliance_safe_rewrites": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2,
+          "title": "Compliance Safe Rewrites",
+          "type": "array"
+        },
+        "recommended_use_case": {
+          "title": "Recommended Use Case",
+          "type": "string"
+        }
+      },
+      "required": [
+        "territory",
+        "core_promise",
+        "differentiator",
+        "proof_direction",
+        "emotional_payoff",
+        "headline_options",
+        "subheadline_options",
+        "benefit_bullets",
+        "compliance_safe_rewrites",
+        "recommended_use_case"
+      ],
+      "title": "MessageTerritory",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "territories": {
+      "items": {
+        "$ref": "#/$defs/MessageTerritory"
+      },
+      "minItems": 3,
+      "title": "Territories",
+      "type": "array"
+    },
+    "source_summary": {
+      "title": "Source Summary",
+      "type": "string"
+    }
+  },
+  "required": [
+    "territories",
+    "source_summary"
+  ],
+  "title": "MessageMapCandidates",
+  "type": "object"
+}

@@ -1,0 +1,283 @@
+{
+  "blocks": {
+    "hero": {
+      "headline": "Stronger-looking hair starts at the routine.",
+      "subheadline": "A targeted system built around ingredients consumers already scan for.",
+      "cta": "Build the routine"
+    },
+    "problem_solution": {
+      "body": "Competitors cluster around repair, moisture, frizz, and thinning. The opportunity is a sharper routine story that connects concern, ingredient logic, and finish."
+    },
+    "proof_block": {
+      "body": "Lead with ingredient and formulation support, then translate benefits into measured appearance language.",
+      "proof_patterns": [
+        "ingredient",
+        "formulation",
+        "consumer_test",
+        "clinical",
+        "none_detected",
+        "award_press"
+      ]
+    },
+    "ingredients_technology": {
+      "body": "Use named ingredients as evidence, then connect them to visible hair appearance and feel."
+    },
+    "sensory_experience": {
+      "body": "Describe slip, softness, polish, and lightweight finish."
+    },
+    "results_social_proof": {
+      "body": "Anchor social proof in reviews, awards, or consumer language only when source data supports it."
+    },
+    "routine_integration": {
+      "body": "Place the product in a simple cleanse, treat, condition, style flow."
+    },
+    "faq": {
+      "items": [
+        {
+          "question": "What hair concerns should this positioning address?",
+          "answer": "Lead with visible dryness, frizz, breakage, shine, and scalp comfort patterns found in the competitor set."
+        },
+        {
+          "question": "How should compliance-safe copy handle results?",
+          "answer": "Use helps, supports, appearance, look, feel, and source-backed proof instead of medical or guaranteed result language."
+        }
+      ]
+    },
+    "closing_cta": {
+      "body": "Choose the territory, then generate channel-specific copy variants."
+    }
+  },
+  "copy_modes": {
+    "marketing": {
+      "hero": {
+        "mode": "marketing",
+        "headline": "Stronger-looking hair starts at the routine.",
+        "body": "A targeted system built around ingredients consumers already scan for.",
+        "bullets": [
+          "Frames shine, frizz, and scalp comfort as one routine.",
+          "Uses compliance-safe appearance language for visible results.",
+          "Responds to whitespace: Trade-off language around high-performance lightweight feel is sparse."
+        ],
+        "cta": "Shop the routine"
+      },
+      "problem_solution": {
+        "mode": "marketing",
+        "headline": "From scattered claims to a clear routine",
+        "body": "Address dryness, frizz, damage, and scalp comfort in one story.",
+        "bullets": [
+          "Frames shine, frizz, and scalp comfort as one routine.",
+          "Uses compliance-safe appearance language for visible results.",
+          "Responds to whitespace: Trade-off language around high-performance lightweight feel is sparse."
+        ],
+        "cta": ""
+      },
+      "proof_block": {
+        "mode": "marketing",
+        "headline": "Proof direction",
+        "body": "A proof-minded routine built around ingredient clarity and visible performance.",
+        "bullets": [
+          "Lead with ingredient and formulation support, then translate benefits into measured appearance language."
+        ],
+        "cta": ""
+      },
+      "ingredients_technology": {
+        "mode": "marketing",
+        "headline": "Ingredient logic",
+        "body": "Name ingredients, explain their role, and keep results appearance-based.",
+        "bullets": [
+          "Supports the appearance of fuller-looking, more resilient hair.",
+          "Supports the look and feel of a healthier scalp environment."
+        ],
+        "cta": ""
+      },
+      "sensory_experience": {
+        "mode": "marketing",
+        "headline": "Feel the finish",
+        "body": "Softness, slip, shine, and a lightweight finish make it memorable.",
+        "bullets": [
+          "Soft feel",
+          "Polished shine",
+          "Lightweight finish"
+        ],
+        "cta": ""
+      },
+      "results_social_proof": {
+        "mode": "marketing",
+        "headline": "Results framing",
+        "body": "Use reviews, awards, and consumer language only when source data supports it.",
+        "bullets": [
+          "No fabricated statistics",
+          "Source-aware proof"
+        ],
+        "cta": ""
+      },
+      "routine_integration": {
+        "mode": "marketing",
+        "headline": "Routine fit",
+        "body": "Position as an easy step in a cleanse, treat, condition, and style routine.",
+        "bullets": [
+          "Simple order",
+          "Clear usage moment"
+        ],
+        "cta": ""
+      },
+      "faq": {
+        "mode": "marketing",
+        "headline": "FAQ",
+        "body": "Answer fit, frequency, and hair type questions in restrained language.",
+        "bullets": [
+          "Who it is for",
+          "How often to use",
+          "What to expect"
+        ],
+        "cta": ""
+      },
+      "closing_cta": {
+        "mode": "marketing",
+        "headline": "Complete the routine",
+        "body": "Move shoppers from concern to next step with a concise CTA.",
+        "bullets": [],
+        "cta": "Build your routine"
+      }
+    },
+    "compliance_safe": {
+      "hero": {
+        "mode": "compliance_safe",
+        "headline": "Supports the appearance of fuller-looking, more resilient hair.",
+        "body": "A targeted system built around ingredients consumers already scan for.",
+        "bullets": [
+          "Frames shine, frizz, and scalp comfort as one routine.",
+          "Uses compliance-safe appearance language for visible results.",
+          "Responds to whitespace: Trade-off language around high-performance lightweight feel is sparse."
+        ],
+        "cta": "Shop the routine"
+      },
+      "problem_solution": {
+        "mode": "compliance_safe",
+        "headline": "From scattered claims to a clear routine",
+        "body": "Address dryness, frizz, damage, and scalp comfort in one story.",
+        "bullets": [
+          "Frames shine, frizz, and scalp comfort as one routine.",
+          "Uses compliance-safe appearance language for visible results.",
+          "Responds to whitespace: Trade-off language around high-performance lightweight feel is sparse."
+        ],
+        "cta": ""
+      },
+      "proof_block": {
+        "mode": "compliance_safe",
+        "headline": "Proof direction",
+        "body": "Supports the appearance of stronger, smoother hair with ingredient-led care.",
+        "bullets": [
+          "Lead with ingredient and formulation support, then translate benefits into measured appearance language."
+        ],
+        "cta": ""
+      },
+      "ingredients_technology": {
+        "mode": "compliance_safe",
+        "headline": "Ingredient logic",
+        "body": "Name ingredients, explain their role, and keep results appearance-based.",
+        "bullets": [
+          "Supports the appearance of fuller-looking, more resilient hair.",
+          "Supports the look and feel of a healthier scalp environment."
+        ],
+        "cta": ""
+      },
+      "sensory_experience": {
+        "mode": "compliance_safe",
+        "headline": "Feel the finish",
+        "body": "Softness, slip, shine, and a lightweight finish make it memorable.",
+        "bullets": [
+          "Soft feel",
+          "Polished shine",
+          "Lightweight finish"
+        ],
+        "cta": ""
+      },
+      "results_social_proof": {
+        "mode": "compliance_safe",
+        "headline": "Results framing",
+        "body": "Use reviews, awards, and consumer language only when source data supports it.",
+        "bullets": [
+          "No fabricated statistics",
+          "Source-aware proof"
+        ],
+        "cta": ""
+      },
+      "routine_integration": {
+        "mode": "compliance_safe",
+        "headline": "Routine fit",
+        "body": "Position as an easy step in a cleanse, treat, condition, and style routine.",
+        "bullets": [
+          "Simple order",
+          "Clear usage moment"
+        ],
+        "cta": ""
+      },
+      "faq": {
+        "mode": "compliance_safe",
+        "headline": "FAQ",
+        "body": "Answer fit, frequency, and hair type questions in restrained language.",
+        "bullets": [
+          "Who it is for",
+          "How often to use",
+          "What to expect"
+        ],
+        "cta": ""
+      },
+      "closing_cta": {
+        "mode": "compliance_safe",
+        "headline": "Complete the routine",
+        "body": "Move shoppers from concern to next step with a concise CTA.",
+        "bullets": [],
+        "cta": "Build your routine"
+      }
+    }
+  },
+  "faq": [
+    {
+      "question": "What hair concerns should this positioning address?",
+      "answer": "Lead with visible dryness, frizz, breakage, shine, and scalp comfort patterns found in the competitor set."
+    },
+    {
+      "question": "How should compliance-safe copy handle results?",
+      "answer": "Use helps, supports, appearance, look, feel, and source-backed proof instead of medical or guaranteed result language."
+    }
+  ],
+  "ai_assist": {
+    "backend": "llama-server",
+    "tasks": {
+      "territory_generation": {
+        "backend": "llama-server",
+        "text": "",
+        "used_remote": false,
+        "diagnostics": [
+          "llama-server unavailable: ConnectError: [Errno 61] Connection refused"
+        ]
+      },
+      "compliance_rewrite": {
+        "backend": "llama-server",
+        "text": "",
+        "used_remote": false,
+        "diagnostics": [
+          "llama-server unavailable: ConnectError: [Errno 61] Connection refused"
+        ]
+      },
+      "pdp_copy": {
+        "backend": "llama-server",
+        "text": "",
+        "used_remote": false,
+        "diagnostics": [
+          "llama-server unavailable: ConnectError: [Errno 61] Connection refused"
+        ]
+      },
+      "faq_phrasing": {
+        "backend": "llama-server",
+        "text": "",
+        "used_remote": false,
+        "diagnostics": [
+          "llama-server unavailable: ConnectError: [Errno 61] Connection refused"
+        ]
+      }
+    }
+  }
+}

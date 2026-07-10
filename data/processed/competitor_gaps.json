@@ -1,0 +1,231 @@
+{
+  "summary": "Analyzed 296 competitor records across 2 retailers.",
+  "total_records": 296,
+  "retailer_breakdown": [
+    {
+      "retailer": "sephora",
+      "record_count": 96,
+      "top_claim_patterns": [
+        {
+          "pattern": "shine",
+          "count": 61
+        },
+        {
+          "pattern": "frizz",
+          "count": 50
+        },
+        {
+          "pattern": "hydrate",
+          "count": 47
+        },
+        {
+          "pattern": "strengthen",
+          "count": 41
+        },
+        {
+          "pattern": "breakage",
+          "count": 38
+        },
+        {
+          "pattern": "smooth",
+          "count": 37
+        },
+        {
+          "pattern": "scalp",
+          "count": 31
+        },
+        {
+          "pattern": "color safe",
+          "count": 19
+        },
+        {
+          "pattern": "repair",
+          "count": 19
+        },
+        {
+          "pattern": "moisturize",
+          "count": 14
+        }
+      ],
+      "top_proof_patterns": [
+        {
+          "pattern": "ingredient",
+          "count": 77
+        },
+        {
+          "pattern": "formulation",
+          "count": 28
+        },
+        {
+          "pattern": "none_detected",
+          "count": 13
+        },
+        {
+          "pattern": "award_press",
+          "count": 11
+        }
+      ],
+      "whitespace": [
+        "Clinical substantiation appears underused versus ingredient storytelling.",
+        "Trade-off language around high-performance lightweight feel is sparse.",
+        "Combine measurable-looking proof structure with compliance-safe appearance language."
+      ]
+    },
+    {
+      "retailer": "ulta",
+      "record_count": 200,
+      "top_claim_patterns": [
+        {
+          "pattern": "shine",
+          "count": 111
+        },
+        {
+          "pattern": "smooth",
+          "count": 76
+        },
+        {
+          "pattern": "frizz",
+          "count": 75
+        },
+        {
+          "pattern": "hydrate",
+          "count": 65
+        },
+        {
+          "pattern": "breakage",
+          "count": 60
+        },
+        {
+          "pattern": "scalp",
+          "count": 57
+        },
+        {
+          "pattern": "strengthen",
+          "count": 52
+        },
+        {
+          "pattern": "repair",
+          "count": 37
+        },
+        {
+          "pattern": "moisturize",
+          "count": 30
+        },
+        {
+          "pattern": "volume",
+          "count": 25
+        }
+      ],
+      "top_proof_patterns": [
+        {
+          "pattern": "ingredient",
+          "count": 153
+        },
+        {
+          "pattern": "formulation",
+          "count": 119
+        },
+        {
+          "pattern": "consumer_test",
+          "count": 107
+        },
+        {
+          "pattern": "clinical",
+          "count": 55
+        },
+        {
+          "pattern": "none_detected",
+          "count": 9
+        },
+        {
+          "pattern": "award_press",
+          "count": 5
+        }
+      ],
+      "whitespace": [
+        "Trade-off language around high-performance lightweight feel is sparse.",
+        "Combine measurable-looking proof structure with compliance-safe appearance language."
+      ]
+    }
+  ],
+  "top_claim_patterns": [
+    {
+      "pattern": "shine",
+      "count": 172
+    },
+    {
+      "pattern": "frizz",
+      "count": 125
+    },
+    {
+      "pattern": "smooth",
+      "count": 113
+    },
+    {
+      "pattern": "hydrate",
+      "count": 112
+    },
+    {
+      "pattern": "breakage",
+      "count": 98
+    },
+    {
+      "pattern": "strengthen",
+      "count": 93
+    },
+    {
+      "pattern": "scalp",
+      "count": 88
+    },
+    {
+      "pattern": "repair",
+      "count": 56
+    },
+    {
+      "pattern": "moisturize",
+      "count": 44
+    },
+    {
+      "pattern": "volume",
+      "count": 37
+    }
+  ],
+  "top_proof_patterns": [
+    {
+      "pattern": "ingredient",
+      "count": 230
+    },
+    {
+      "pattern": "formulation",
+      "count": 147
+    },
+    {
+      "pattern": "consumer_test",
+      "count": 107
+    },
+    {
+      "pattern": "clinical",
+      "count": 55
+    },
+    {
+      "pattern": "none_detected",
+      "count": 22
+    },
+    {
+      "pattern": "award_press",
+      "count": 16
+    }
+  ],
+  "category_insights": [
+    "Repair, moisture, frizz, and thinning language dominate the competitive set.",
+    "Ingredient and formulation proof appear more often than clinical proof."
+  ],
+  "gap_opportunities": [
+    "Trade-off language around high-performance lightweight feel is sparse.",
+    "Combine measurable-looking proof structure with compliance-safe appearance language."
+  ],
+  "retailer_specific_differences": [
+    "sephora: 96 records; leading claim pattern is shine.",
+    "ulta: 200 records; leading claim pattern is shine."
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "$defs": {
+    "PatternCount": {
+      "properties": {
+        "pattern": {
+          "title": "Pattern",
+          "type": "string"
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "pattern",
+        "count"
+      ],
+      "title": "PatternCount",
+      "type": "object"
+    },
+    "RetailerGap": {
+      "properties": {
+        "retailer": {
+          "enum": [
+            "sephora",
+            "ulta",
+            "other",
+            "unknown"
+          ],
+          "title": "Retailer",
+          "type": "string"
+        },
+        "record_count": {
+          "title": "Record Count",
+          "type": "integer"
+        },
+        "top_claim_patterns": {
+          "items": {
+            "$ref": "#/$defs/PatternCount"
+          },
+          "title": "Top Claim Patterns",
+          "type": "array"
+        },
+        "top_proof_patterns": {
+          "items": {
+            "$ref": "#/$defs/PatternCount"
+          },
+          "title": "Top Proof Patterns",
+          "type": "array"
+        },
+        "whitespace": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Whitespace",
+          "type": "array"
+        }
+      },
+      "required": [
+        "retailer",
+        "record_count",
+        "top_claim_patterns",
+        "top_proof_patterns",
+        "whitespace"
+      ],
+      "title": "RetailerGap",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "summary": {
+      "title": "Summary",
+      "type": "string"
+    },
+    "total_records": {
+      "title": "Total Records",
+      "type": "integer"
+    },
+    "retailer_breakdown": {
+      "items": {
+        "$ref": "#/$defs/RetailerGap"
+      },
+      "title": "Retailer Breakdown",
+      "type": "array"
+    },
+    "top_claim_patterns": {
+      "items": {
+        "$ref": "#/$defs/PatternCount"
+      },
+      "title": "Top Claim Patterns",
+      "type": "array"
+    },
+    "top_proof_patterns": {
+      "items": {
+        "$ref": "#/$defs/PatternCount"
+      },
+      "title": "Top Proof Patterns",
+      "type": "array"
+    },
+    "category_insights": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Category Insights",
+      "type": "array"
+    },
+    "gap_opportunities": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Gap Opportunities",
+      "type": "array"
+    },
+    "retailer_specific_differences": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Retailer Specific Differences",
+      "type": "array"
+    }
+  },
+  "required": [
+    "summary",
+    "total_records",
+    "retailer_breakdown",
+    "top_claim_patterns",
+    "top_proof_patterns",
+    "category_insights",
+    "gap_opportunities",
+    "retailer_specific_differences"
+  ],
+  "title": "CompetitorGaps",
+  "type": "object"
+}

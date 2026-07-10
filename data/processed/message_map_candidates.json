@@ -1,0 +1,80 @@
+{
+  "territories": [
+    {
+      "territory": "science-led",
+      "core_promise": "Visible shine confidence through proof-aware care.",
+      "differentiator": "Pairs ingredient substantiation with frizz benefit framing.",
+      "proof_direction": "Lead with ingredient and formulation support, then translate benefits into measured appearance language.",
+      "emotional_payoff": "Confidence that the routine is serious without sounding clinical.",
+      "headline_options": [
+        "Stronger-looking hair starts at the routine.",
+        "Proof-minded care for modern hair stress."
+      ],
+      "subheadline_options": [
+        "A targeted system built around ingredients consumers already scan for.",
+        "Designed to support smoother, healthier-looking hair without heavy promises."
+      ],
+      "benefit_bullets": [
+        "Frames shine, frizz, and scalp comfort as one routine.",
+        "Uses compliance-safe appearance language for visible results.",
+        "Responds to whitespace: Trade-off language around high-performance lightweight feel is sparse."
+      ],
+      "compliance_safe_rewrites": [
+        "Supports the appearance of fuller-looking, more resilient hair.",
+        "Supports the look and feel of a healthier scalp environment."
+      ],
+      "recommended_use_case": "Lead territory when proof hierarchy matters more than fragrance or luxury cues."
+    },
+    {
+      "territory": "sensorial-premium",
+      "core_promise": "High-performance frizz care with a polished finish.",
+      "differentiator": "Owns texture, shine, and finish without losing functional credibility.",
+      "proof_direction": "Use sensory descriptors, routine ritual cues, and lightweight trade-off claims.",
+      "emotional_payoff": "A daily upgrade that makes hair feel finished before styling.",
+      "headline_options": [
+        "The soft-finish routine hair keeps asking for.",
+        "Performance you can feel before you style."
+      ],
+      "subheadline_options": [
+        "A sensorial system for shine, slip, and touchable control.",
+        "Built to make treatment-level care feel easy in a daily routine."
+      ],
+      "benefit_bullets": [
+        "Elevates softness, glide, and frizz as hero outcomes.",
+        "Resolves moisture without heaviness and polish without buildup.",
+        "Creates premium cues while staying specific about hair concerns."
+      ],
+      "compliance_safe_rewrites": [
+        "Leaves hair feeling softer, smoother, and more polished.",
+        "Helps improve the appearance of shine and manageability."
+      ],
+      "recommended_use_case": "Use for PDP modules and campaigns where luxury feel can differentiate."
+    },
+    {
+      "territory": "clean-performance",
+      "core_promise": "Clean-positioned care that still speaks in shine.",
+      "differentiator": "Balances free-from cues with functional claims and ingredient clarity.",
+      "proof_direction": "Use ingredient exclusions only as support, not as the main performance story.",
+      "emotional_payoff": "Trust that cleaner choices do not mean weaker results.",
+      "headline_options": [
+        "Clean cues. Performance discipline.",
+        "A cleaner routine with results language built in."
+      ],
+      "subheadline_options": [
+        "A focused system for consumers who want ingredient clarity and visible polish.",
+        "Free-from messaging supports the story while benefits stay in the lead."
+      ],
+      "benefit_bullets": [
+        "Separates clean values from measurable-looking performance claims.",
+        "Keeps benefit language concrete across shine, frizz, smooth.",
+        "Avoids overclaiming by using support, help, and appearance framing."
+      ],
+      "compliance_safe_rewrites": [
+        "Helps improve the look of healthier, smoother hair.",
+        "Formulated without selected ingredients consumers often avoid."
+      ],
+      "recommended_use_case": "Use when clean positioning must avoid sounding generic."
+    }
+  ],
+  "source_summary": "Analyzed 296 competitor records across 2 retailers."
+}

@@ -1,0 +1,185 @@
+{
+  "$defs": {
+    "CopyVariant": {
+      "properties": {
+        "mode": {
+          "enum": [
+            "marketing",
+            "compliance_safe"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "headline": {
+          "title": "Headline",
+          "type": "string"
+        },
+        "body": {
+          "title": "Body",
+          "type": "string"
+        },
+        "bullets": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Bullets",
+          "type": "array"
+        },
+        "cta": {
+          "default": "",
+          "title": "Cta",
+          "type": "string"
+        }
+      },
+      "required": [
+        "mode",
+        "headline",
+        "body"
+      ],
+      "title": "CopyVariant",
+      "type": "object"
+    },
+    "FaqItem": {
+      "properties": {
+        "question": {
+          "title": "Question",
+          "type": "string"
+        },
+        "answer": {
+          "title": "Answer",
+          "type": "string"
+        }
+      },
+      "required": [
+        "question",
+        "answer"
+      ],
+      "title": "FaqItem",
+      "type": "object"
+    },
+    "HeroBlock": {
+      "properties": {
+        "headline": {
+          "title": "Headline",
+          "type": "string"
+        },
+        "subheadline": {
+          "title": "Subheadline",
+          "type": "string"
+        },
+        "cta": {
+          "title": "Cta",
+          "type": "string"
+        }
+      },
+      "required": [
+        "headline",
+        "subheadline",
+        "cta"
+      ],
+      "title": "HeroBlock",
+      "type": "object"
+    },
+    "PdpBlockSet": {
+      "properties": {
+        "hero": {
+          "$ref": "#/$defs/HeroBlock"
+        },
+        "problem_solution": {
+          "additionalProperties": true,
+          "title": "Problem Solution",
+          "type": "object"
+        },
+        "proof_block": {
+          "additionalProperties": true,
+          "title": "Proof Block",
+          "type": "object"
+        },
+        "ingredients_technology": {
+          "additionalProperties": true,
+          "title": "Ingredients Technology",
+          "type": "object"
+        },
+        "sensory_experience": {
+          "additionalProperties": true,
+          "title": "Sensory Experience",
+          "type": "object"
+        },
+        "results_social_proof": {
+          "additionalProperties": true,
+          "title": "Results Social Proof",
+          "type": "object"
+        },
+        "routine_integration": {
+          "additionalProperties": true,
+          "title": "Routine Integration",
+          "type": "object"
+        },
+        "faq": {
+          "additionalProperties": true,
+          "title": "Faq",
+          "type": "object"
+        },
+        "closing_cta": {
+          "additionalProperties": true,
+          "title": "Closing Cta",
+          "type": "object"
+        }
+      },
+      "required": [
+        "hero",
+        "problem_solution",
+        "proof_block",
+        "ingredients_technology",
+        "sensory_experience",
+        "results_social_proof",
+        "routine_integration",
+        "faq",
+        "closing_cta"
+      ],
+      "title": "PdpBlockSet",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "blocks": {
+      "$ref": "#/$defs/PdpBlockSet"
+    },
+    "copy_modes": {
+      "additionalProperties": {
+        "additionalProperties": {
+          "$ref": "#/$defs/CopyVariant"
+        },
+        "type": "object"
+      },
+      "propertyNames": {
+        "enum": [
+          "marketing",
+          "compliance_safe"
+        ]
+      },
+      "title": "Copy Modes",
+      "type": "object"
+    },
+    "faq": {
+      "items": {
+        "$ref": "#/$defs/FaqItem"
+      },
+      "minItems": 2,
+      "title": "Faq",
+      "type": "array"
+    },
+    "ai_assist": {
+      "additionalProperties": true,
+      "title": "Ai Assist",
+      "type": "object"
+    }
+  },
+  "required": [
+    "blocks",
+    "copy_modes",
+    "faq"
+  ],
+  "title": "PdpBlocks",
+  "type": "object"
+}

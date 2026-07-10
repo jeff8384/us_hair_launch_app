@@ -1,0 +1,164 @@
+{
+  "properties": {
+    "record_id": {
+      "title": "Record Id",
+      "type": "string"
+    },
+    "source_file": {
+      "title": "Source File",
+      "type": "string"
+    },
+    "source_sheet": {
+      "title": "Source Sheet",
+      "type": "string"
+    },
+    "row_index": {
+      "title": "Row Index",
+      "type": "integer"
+    },
+    "retailer": {
+      "enum": [
+        "sephora",
+        "ulta",
+        "other",
+        "unknown"
+      ],
+      "title": "Retailer",
+      "type": "string"
+    },
+    "retailer_inference_source": {
+      "default": "",
+      "title": "Retailer Inference Source",
+      "type": "string"
+    },
+    "retailer_confidence": {
+      "default": 0.0,
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Retailer Confidence",
+      "type": "number"
+    },
+    "brand": {
+      "default": "",
+      "title": "Brand",
+      "type": "string"
+    },
+    "product_name": {
+      "default": "",
+      "title": "Product Name",
+      "type": "string"
+    },
+    "category": {
+      "default": "other",
+      "title": "Category",
+      "type": "string"
+    },
+    "subcategory": {
+      "default": "",
+      "title": "Subcategory",
+      "type": "string"
+    },
+    "price_usd": {
+      "anyOf": [
+        {
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Price Usd"
+    },
+    "currency": {
+      "default": "USD",
+      "title": "Currency",
+      "type": "string"
+    },
+    "size": {
+      "default": "",
+      "title": "Size",
+      "type": "string"
+    },
+    "description_raw": {
+      "default": "",
+      "title": "Description Raw",
+      "type": "string"
+    },
+    "claims_raw": {
+      "default": "",
+      "title": "Claims Raw",
+      "type": "string"
+    },
+    "ingredients_raw": {
+      "default": "",
+      "title": "Ingredients Raw",
+      "type": "string"
+    },
+    "how_to_use_raw": {
+      "default": "",
+      "title": "How To Use Raw",
+      "type": "string"
+    },
+    "rating": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Rating"
+    },
+    "review_count": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Review Count"
+    },
+    "target_hair_type_raw": {
+      "default": "",
+      "title": "Target Hair Type Raw",
+      "type": "string"
+    },
+    "target_concern_raw": {
+      "default": "",
+      "title": "Target Concern Raw",
+      "type": "string"
+    },
+    "product_url": {
+      "default": "",
+      "title": "Product Url",
+      "type": "string"
+    },
+    "image_url": {
+      "default": "",
+      "title": "Image Url",
+      "type": "string"
+    },
+    "extra_raw_fields": {
+      "additionalProperties": true,
+      "title": "Extra Raw Fields",
+      "type": "object"
+    }
+  },
+  "required": [
+    "record_id",
+    "source_file",
+    "source_sheet",
+    "row_index",
+    "retailer"
+  ],
+  "title": "CompetitorNormalized",
+  "type": "object"
+}

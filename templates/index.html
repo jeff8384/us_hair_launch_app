@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Local US hair-care copy differentiation workflow">
+    <title>Copy Differentiation Lab</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="hd">
+        <div>
+          <div class="mark"><span class="mk-a">문안</span><span class="mk-b">차별화 검토</span></div>
+          <p class="hd-sub">US Hair Care · Copy Differentiation Lab</p>
+        </div>
+        <div class="ai-box">
+          <label for="backendSelect">AI backend</label>
+          <select id="backendSelect">
+            <option value="llama-server" selected>Local llama-server (current)</option>
+            <option value="llama-server-gemma">Local Gemma (llama-server)</option>
+            <option value="llama-server-exaone">Local EXAONE Deep 7.8B (llama-server)</option>
+            <option value="ollama">Ollama</option>
+            <option value="codex">Codex</option>
+            <option value="openai-compatible">OpenAI-compatible</option>
+            <option value="deterministic">Deterministic fallback</option>
+          </select>
+        </div>
+      </header>
+
+      <section class="act" aria-labelledby="dataHeading">
+        <div class="act-hd">
+          <span class="ax">01</span>
+          <h1 id="dataHeading">경쟁 데이터</h1>
+          <span id="scopeCount" class="act-n">Loading</span>
+        </div>
+        <div id="sourceList" class="src-list"></div>
+        <div class="drop" aria-label="Data source note">
+          <div class="drop-t">데이터는 로컬 폴더에서 로드됩니다</div>
+          <div class="drop-s">CSV · XLSX 원본은 <b>{{ input_dir }}</b> 기준으로 스캔됩니다. 추가 파일은 이 폴더에 넣고 Refresh data를 누르세요.</div>
+        </div>
+        <div class="scope">
+          <label for="topN">베스트셀러 상위</label>
+          <input id="topN" type="range" min="5" max="200" step="5" value="30">
+          <output id="topNValue" for="topN">30위</output>
+          <button id="runButton" type="button">Refresh data</button>
+        </div>
+        <div id="profileCards" class="prof"></div>
+      </section>
+
+      <section class="act" aria-labelledby="draftHeading">
+        <div class="act-hd"><span class="ax">02</span><h2 id="draftHeading">내 문안</h2></div>
+        <div class="form">
+          <div class="f-row">
+            <input id="productName" class="in" value="PeachBiome Repair Serum" aria-label="Product name">
+            <select id="category" class="in sel" aria-label="Category">
+              <option>shampoo</option>
+              <option>conditioner</option>
+              <option>mask</option>
+              <option selected>serum</option>
+              <option>oil</option>
+              <option>scalp_treatment</option>
+              <option>leave_in</option>
+              <option>styling</option>
+              <option>bundle</option>
+              <option>other</option>
+            </select>
+          </div>
+          <textarea id="draftCopy" class="ta" rows="6">Postbiotic peach-derived repair serum. Our PeachBiome028 microbiome complex rebalances the scalp barrier and reinforces weakened strands. Lightweight and non-greasy, for damaged and color-treated hair.</textarea>
+          <div class="f-actions">
+            <div id="providerNote" class="prov"></div>
+            <button id="reviewButton" class="cta" type="button">문안 검토 요청</button>
+          </div>
+          <div id="errorBox" class="err" hidden></div>
+        </div>
+      </section>
+
+      <section id="resultSection" class="act" aria-labelledby="resultHeading" hidden>
+        <div class="act-hd"><span class="ax">03</span><h2 id="resultHeading">차별화 맵</h2></div>
+        <div class="verdict">
+          <p id="summary" class="v-summary"></p>
+          <div id="riskBox" class="v-risk">
+            <span class="v-risk-lb">컴플라이언스 리스크</span>
+            <strong id="riskValue" class="v-risk-val">-</strong>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="panel">
+            <h3 class="panel-t">포지셔닝 레이더</h3>
+            <div id="radar"></div>
+            <div id="legend" class="legend"></div>
+          </div>
+          <div class="panel">
+            <h3 class="panel-t">근거 커버리지 · 여백</h3>
+            <p class="panel-s">막대 = 경쟁사 평균 강조 비율 · 세로선 = 내 문안 위치</p>
+            <div id="coverageBars" class="bars"></div>
+          </div>
+        </div>
+        <div id="axisPanel" class="panel rivals" hidden>
+          <div class="panel-t">
+            <span id="axisTitle"></span>
+            <button id="axisClose" class="clr" type="button">닫기</button>
+          </div>
+          <p id="axisNote" class="panel-s"></p>
+          <div id="axisRivals" class="rv-list"></div>
+        </div>
+        <div class="panel rivals">
+          <h3 class="panel-t">가장 닮은 경쟁 제품</h3>
+          <p class="panel-s">8축 포지셔닝이 내 문안과 가장 가까운 제품입니다.</p>
+          <div id="nearestRivals" class="rv-list"></div>
+        </div>
+        <div class="find-grid">
+          <article class="fc good"><h3>여기서 차별화됩니다</h3><ul id="diffList"></ul></article>
+          <article class="fc warn"><h3>여기선 묻힙니다</h3><ul id="crowdedList"></ul></article>
+          <article class="fc ws"><h3>비어 있는 여백</h3><ul id="gapList"></ul></article>
+        </div>
+        <div id="flagPanel" class="panel flags" hidden>
+          <h3 class="panel-t">컴플라이언스 플래그</h3>
+          <div id="flags"></div>
+        </div>
+        <div id="rewrites" class="rw-grid"></div>
+      </section>
+
+      <footer class="ft">
+        경쟁 데이터는 {{ input_dir }}에서 로드합니다. 정규화·집계는 결정론적으로, 판단·리라이트는 로컬 AI 우선으로 실행합니다.
+      </footer>
+    </main>
+    <script type="module" src="/static/app.js"></script>
+  </body>
+</html>
