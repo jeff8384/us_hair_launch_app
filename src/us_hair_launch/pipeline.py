@@ -26,6 +26,7 @@ def run_pipeline(
     exports_dir: Path | str = Path("data/exports"),
     schema_dir: Path | str = Path("schemas"),
     ai_backend: str = "deterministic",
+    ai_api_key: str = "",
 ) -> PipelineResult:
     input_path = _resolve_input_path(Path(input_dir))
     output_path = Path(output_dir)
@@ -36,7 +37,7 @@ def run_pipeline(
     claims = extract_claims(normalized)
     gaps = analyze_gaps(claims)
     messages = generate_message_map(gaps)
-    pdp = generate_pdp_blocks(messages, gaps, ai_backend=ai_backend)
+    pdp = generate_pdp_blocks(messages, gaps, ai_backend=ai_backend, ai_api_key=ai_api_key)
 
     write_schema_files(schema_path)
     dump_jsonl(output_path / "competitor_normalized.jsonl", normalized)

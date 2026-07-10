@@ -12,6 +12,7 @@ from .base import DeterministicFallbackProvider, GenerationRequest, GenerationRe
 
 GEMMA_MODEL_NAME = "gemma-4-12B-it-Q4_K_M.gguf"
 EXAONE_MODEL_NAME = "EXAONE-Deep-7.8B-Q8_0.gguf"
+GEMINI_DEFAULT_MODEL = "gemini-2.0-flash"
 
 
 @dataclass
@@ -152,14 +153,50 @@ class OpenAICompatibleProvider:
             )
 
 
+@dataclass
+class GeminiProvider:
+    name: str = "gemini"
+    api_key: str = ""
+    model: str = GEMINI_DEFAULT_MODEL
+
+    def generate(self, request: GenerationRequest) -> GenerationResponse:
+        key = self.api_key or os.getenv("GEMINI_API_KEY", "")
+        if not key:
+            return GenerationResponse(
+                backend=self.name,
+                text="",
+                used_remote=True,
+                diagnostics=["GEMINI_API_KEY is not set."],
+            )
+        try:
+            from google import genai  # type: ignore[import-untyped]
+
+            client = genai.Client(api_key=key)
+            response = client.models.generate_content(
+                model=self.model,
+                contents=request.prompt,
+            )
+            text = response.text or ""
+            return GenerationResponse(backend=self.name, text=text, used_remote=True)
+        except Exception as exc:
+            return GenerationResponse(
+                backend=self.name,
+                text="",
+                used_remote=True,
+                diagnostics=[f"Gemini unavailable: {type(exc).__name__}: {exc}"],
+            )
+
+
 def provider_for(
     name: str,
+    api_key: str = "",
 ) -> (
     DeterministicFallbackProvider
     | OllamaProvider
     | LlamaServerProvider
     | CodexProvider
     | OpenAICompatibleProvider
+    | GeminiProvider
 ):
     normalized = name.strip().lower()
     if normalized == "ollama":
@@ -174,6 +211,8 @@ def provider_for(
         return CodexProvider()
     if normalized in {"openai", "openai-compatible"}:
         return OpenAICompatibleProvider()
+    if normalized in {"gemini", "google", "google-ai", "google-gemini"}:
+        return GeminiProvider(api_key=api_key)
     return DeterministicFallbackProvider()
 
 

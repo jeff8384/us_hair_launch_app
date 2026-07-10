@@ -29,6 +29,7 @@ def generate_pdp_blocks(
     messages: MessageMapCandidates,
     gaps: CompetitorGaps,
     ai_backend: str = "deterministic",
+    ai_api_key: str = "",
 ) -> PdpBlocks:
     lead = messages.territories[0]
     blocks = {
@@ -69,7 +70,7 @@ def generate_pdp_blocks(
             "body": "Choose the territory, then generate channel-specific copy variants."
         },
     }
-    provider = provider_for(ai_backend)
+    provider = provider_for(ai_backend, api_key=ai_api_key)
     assist_prompts = {
         "territory_generation": "Suggest one sharper territory angle from the gap analysis.",
         "compliance_rewrite": "Rewrite the hero claim in compliance-safe appearance language.",
