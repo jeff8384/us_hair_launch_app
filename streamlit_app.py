@@ -230,7 +230,10 @@ def main() -> None:
         st.subheader("AI backend")
         st.text_input("Google API key", key="google_api_key", type="password", placeholder="AI...")
         st.caption("Secrets: `GEMINI_API_KEY` or `GOOGLE_API_KEY`")
-        st.success("Google Gemini 우선") if key else st.warning("키 없음: deterministic fallback")
+        if key:
+            st.success("Google Gemini 우선")
+        else:
+            st.warning("키 없음: deterministic fallback")
         st.divider()
         top_n = st.slider("베스트셀러 상위", 5, 200, 30, step=5)
         use_sephora = st.checkbox("Sephora 사용", value=True)
