@@ -15,6 +15,7 @@ __pycache__/
 
 .omx/
 .omo/
+.omc/
 .codegraph
 
 data/raw/
