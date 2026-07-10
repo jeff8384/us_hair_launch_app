@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from json import JSONDecodeError
 
 import httpx
+from google.genai.errors import APIError
 
 from .base import DeterministicFallbackProvider, GenerationRequest, GenerationResponse
 
@@ -181,13 +182,19 @@ class GeminiProvider:
                 text=response.text or "",
                 used_remote=True,
             )
-        except (ImportError, AttributeError, TypeError, ValueError) as exc:
-            return GenerationResponse(
-                backend=self.name,
-                text="",
-                used_remote=True,
-                diagnostics=[f"Gemini unavailable: {type(exc).__name__}: {exc}"],
-            )
+        except ImportError as exc:
+            return _gemini_unavailable(exc)
+        except (APIError, AttributeError, TypeError, ValueError) as exc:
+            return _gemini_unavailable(exc)
+
+
+def _gemini_unavailable(exc: Exception) -> GenerationResponse:
+    return GenerationResponse(
+        backend="gemini",
+        text="",
+        used_remote=True,
+        diagnostics=[f"Gemini unavailable: {type(exc).__name__}: {exc}"],
+    )
 
 
 def provider_for(

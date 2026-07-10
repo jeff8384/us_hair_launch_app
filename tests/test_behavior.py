@@ -2,9 +2,11 @@ from pathlib import Path
 
 from openpyxl import Workbook
 
+from us_hair_launch.ai.base import GenerationRequest
 from us_hair_launch.ai.providers import (
     EXAONE_MODEL_NAME,
     GEMMA_MODEL_NAME,
+    GeminiProvider,
     LlamaServerProvider,
     _clean_llama_text,
     provider_for,
@@ -88,3 +90,32 @@ def test_llama_server_provider_aliases_select_local_models() -> None:
 def test_llama_server_text_cleaning_removes_thought_tags() -> None:
     assert _clean_llama_text("</thought>\n\nOK") == "OK"
     assert _clean_llama_text("<thought>hidden</thought>\n{\"ok\": true}") == '{"ok": true}'
+
+
+def test_gemini_provider_returns_diagnostics_when_google_api_rejects_request(
+    monkeypatch,
+) -> None:
+    from google import genai
+    from google.genai.errors import ClientError
+
+    class RejectingModels:
+        def generate_content(self, *, model: str, contents: str):
+            raise ClientError(400, {"error": {"message": "invalid api key"}})
+
+    class RejectingClient:
+        models = RejectingModels()
+
+        def __init__(self, *, api_key: str) -> None:
+            assert api_key == "bad-key"
+
+    monkeypatch.setattr(genai, "Client", RejectingClient)
+
+    response = GeminiProvider(api_key="bad-key").generate(
+        GenerationRequest(backend="gemini", mode="copy_diff_review", prompt="review this")
+    )
+
+    assert response.backend == "gemini"
+    assert response.text == ""
+    assert response.used_remote is True
+    assert response.diagnostics
+    assert "Gemini unavailable: ClientError" in response.diagnostics[0]
