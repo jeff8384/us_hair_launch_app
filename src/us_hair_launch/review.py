@@ -25,6 +25,7 @@ def review_draft(
     request: DraftReviewRequest,
     claims_path: Path,
     ai_backend: str,
+    ai_api_key: str = "",
 ) -> DraftReviewResponse:
     claims = _read_claims(claims_path)
     scoped = _top_n_by_retailer(claims, request.top_n)
@@ -33,7 +34,7 @@ def review_draft(
     if ai_backend == "deterministic":
         return baseline
 
-    generation = provider_for(ai_backend).generate(
+    generation = provider_for(ai_backend, api_key=ai_api_key).generate(
         GenerationRequest(
             backend=ai_backend,
             mode="copy_diff_review",
