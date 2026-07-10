@@ -77,8 +77,6 @@ def _page_api_key() -> None:
                 st.error("API Key를 입력해주세요.")
             elif not key.startswith("AI"):
                 st.warning("Google AI Studio API Key는 'AI'로 시작합니다. 확인해주세요.")
-                st.session_state["gemini_api_key"] = key
-                st.rerun()
             else:
                 st.session_state["gemini_api_key"] = key
                 st.rerun()
