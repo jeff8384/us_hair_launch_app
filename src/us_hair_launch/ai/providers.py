@@ -186,6 +186,8 @@ class GeminiProvider:
             return _gemini_unavailable(exc)
         except (APIError, AttributeError, TypeError, ValueError) as exc:
             return _gemini_unavailable(exc)
+        except Exception as exc:  # noqa: BLE001
+            return _gemini_unavailable(exc)
 
 
 def _gemini_unavailable(exc: Exception) -> GenerationResponse:

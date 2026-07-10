@@ -15,6 +15,8 @@ from us_hair_launch.extraction import extract_record_claims
 from us_hair_launch.ingestion import read_raw_rows
 from us_hair_launch.models import CompetitorNormalized
 from us_hair_launch.normalization import normalize_rows
+from us_hair_launch.review import review_draft
+from us_hair_launch.review_types import DraftReviewRequest
 
 
 def test_multisheet_xlsx_and_alternate_columns_normalize(tmp_path: Path) -> None:
@@ -119,3 +121,41 @@ def test_gemini_provider_returns_diagnostics_when_google_api_rejects_request(
     assert response.used_remote is True
     assert response.diagnostics
     assert "Gemini unavailable: ClientError" in response.diagnostics[0]
+
+
+def test_review_draft_falls_back_when_ai_provider_raises(
+    monkeypatch,
+    tmp_path: Path,
+) -> None:
+    import us_hair_launch.review as review_module
+
+    class ExplodingProvider:
+        name = "gemini"
+
+        def generate(self, request: GenerationRequest):
+            raise RuntimeError("upstream rejected request")
+
+    def exploding_provider_for(name: str, api_key: str = ""):
+        return ExplodingProvider()
+
+    claims_path = tmp_path / "competitor_claims.jsonl"
+    claims_path.write_text("", encoding="utf-8")
+    monkeypatch.setattr(review_module, "provider_for", exploding_provider_for)
+
+    response = review_draft(
+        DraftReviewRequest(
+            product_name="PeachBiome Repair Serum",
+            category="serum",
+            copy="Lightweight shine serum for smoother-looking frizz control.",
+            top_n=30,
+        ),
+        claims_path,
+        "gemini",
+        ai_api_key="bad-key",
+    )
+
+    assert response.backend == "gemini"
+    assert response.summary
+    assert response.diagnostics == [
+        "AI review unavailable: RuntimeError; deterministic review displayed."
+    ]

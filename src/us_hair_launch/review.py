@@ -34,13 +34,20 @@ def review_draft(
     if ai_backend == "deterministic":
         return baseline
 
-    generation = provider_for(ai_backend, api_key=ai_api_key).generate(
-        GenerationRequest(
-            backend=ai_backend,
-            mode="copy_diff_review",
-            prompt=_prompt(request, draft_claim, scoped, baseline),
+    try:
+        generation = provider_for(ai_backend, api_key=ai_api_key).generate(
+            GenerationRequest(
+                backend=ai_backend,
+                mode="copy_diff_review",
+                prompt=_prompt(request, draft_claim, scoped, baseline),
+            )
         )
-    )
+    except Exception as exc:  # noqa: BLE001
+        baseline.backend = ai_backend
+        baseline.diagnostics.append(
+            f"AI review unavailable: {type(exc).__name__}; deterministic review displayed."
+        )
+        return baseline
     if generation.text:
         parsed = _parse_ai_review(generation.text, baseline)
         if parsed is not None:

@@ -318,6 +318,9 @@ def main() -> None:
     scores = {axis: int(review["scores"][axis]) for axis in AXES}
     _section("차별화 맵", "03")
     st.markdown(f'<div class="note">{review["summary"]}</div>', unsafe_allow_html=True)
+    diagnostics = review.get("diagnostics", [])
+    if isinstance(diagnostics, list) and diagnostics:
+        st.warning(" / ".join(str(item) for item in diagnostics))
     risk = str(review.get("compliance", {}).get("risk", "low"))
     st.markdown(
         f'컴플라이언스 리스크: <span class="risk-{risk}">{risk.upper()}</span>',
