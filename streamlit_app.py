@@ -357,7 +357,7 @@ def main() -> None:
 
     _section("내 문안", "02")
     c1, c2 = st.columns([2, 1])
-    product_name = c1.text_input("제품명", value="PeachBiome Repair Serum")
+    product_name = c1.text_input("제품명", value="Dr. Groot, Scalp Barrier Boost Oil in Serum")
     category = c2.selectbox(
         "카테고리",
         [
@@ -374,9 +374,9 @@ def main() -> None:
     copy = st.text_area(
         "검토받을 영문 PDP 문안",
         value=(
-            "Postbiotic peach-derived repair serum. Our PeachBiome028 microbiome complex "
-            "rebalances the scalp barrier and reinforces weakened strands. Lightweight and "
-            "non-greasy, for damaged and color-treated hair."
+            "A lightweight, nonsticky antioxidant leave-in treatment designed to strengthen, hydrate, and "
+            "rebalance the scalp for healthier-, fuller-looking hair."
+            "Reduces hair loss due to breakage by 40.2% in 2 weeks and 67.6% in 4 weeks."
         ),
         height=140,
     )
